@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-//import SearchForm from "./SearchForm";
+//import {SearchForm} from "./SearchForm";
 
 export default class PlantList extends Component {
   // add state with a property called "plants" - initialize as an empty array
     constructor() {
     super();
     this.state = { 
-      plants: []
+      plants: [],
+      search: ""
     };
   }
   // when the component mounts:
@@ -23,19 +24,22 @@ export default class PlantList extends Component {
       })
       .catch(err => {
         console.log(err)})
-}
-/*search bar
-  handleChange = e => {
-    this.setSearch(e.target.value);
+
+     /*search bar
+  const handleChange = e => {
+    this.setState({search:e.target.value});
   };
-  result = this.state.plants.filter(plant => {
+  const result = this.state.plants.filter(plant => {
     const results = plant.name.includes(this.search);
     return results;
-  })
-end of search bar*/
+  })end of search bar*/ 
+}
+
+
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
+    
     return (
       <main className="plant-list">
         {this.state?.plants?.map((plant) => (
