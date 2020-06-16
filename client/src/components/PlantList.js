@@ -1,15 +1,45 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+//import {SearchForm} from "./SearchForm";
+
 export default class PlantList extends Component {
   // add state with a property called "plants" - initialize as an empty array
-
+    constructor() {
+    super();
+    this.state = { 
+      plants: [],
+      search: ""
+    };
+  }
   // when the component mounts:
   //   - fetch data from the server endpoint - http://localhost:3333/plants
   //   - set the returned plants array to this.state.plants
+  componentDidMount(){
+    axios
+      .get('http://localhost:3333/plants')
+      .then(response => {
+        this.setState({ plants:response.data.plantsData});
+        console.log(response.data.plantsData);
+      })
+      .catch(err => {
+        console.log(err)})
+
+     /*search bar
+  const handleChange = e => {
+    this.setState({search:e.target.value});
+  };
+  const result = this.state.plants.filter(plant => {
+    const results = plant.name.includes(this.search);
+    return results;
+  })end of search bar*/ 
+}
+
+
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   render() {
+    
     return (
       <main className="plant-list">
         {this.state?.plants?.map((plant) => (
